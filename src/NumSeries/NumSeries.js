@@ -1,79 +1,35 @@
 import React, { Component } from "react";
 
 class NumSeries extends Component {
-  constructor(props) {
-    super(props);
-    let arr = [
-      {
-        qus: "1, 2, 3, 4,",
-        ans: 5,
-      },
-      {
-        qus: "6, 7, 8, 9,",
-        ans: 10,
-      },
-      {
-        qus: "6, 7,",
-        ans: 8,
-      },
-      {
-        qus: "6, 7, 8,",
-        ans: 9,
-      },
-      {
-        qus: "6,",
-        ans: 7,
-      },
-      {
-        qus: "6, 7, 8, 9,",
-        ans: 10,
-      },
-      {
-        qus: "6, 7, 8, 9,",
-        ans: 10,
-      },
-      {
-        qus: "17,",
-        ans: 18,
-      },
-      {
-        qus: "19",
-        ans: 20,
-      },
-      {
-        qus: "30",
-        ans: 31,
-      },
-    ];
+  randomNumbers = () => {
+    let arr = [];
+    let question;
+    let firstNumber = parseInt(Math.random() * 97);
 
-    this.state = { arr };
-  }
+    arr.push(firstNumber);
 
-  randomQuestion = () => {
-    let random = Math.round(Math.random() * 5);
-    // question.textContent = arr[random].qus;
-    return random;
+    while (arr.length < 4) {
+      arr.push(arr[arr.length - 1] + 1);
+    }
+
+    console.log(arr);
+    question = `${arr[0]}, ${arr[1]}, ${arr[2]}, `;
+    return question;
   };
-  handleSubmit = () => {
+  handleSubmit = (arr) => {
+    console.log("button clicked!");
+    console.log(arr);
     let answer = document.querySelector(".answer").value;
-    // let question = document.querySelector(".question");
-    // answer === this.state.arr[this.randomQuestion()].ans
-    //   ? alert(`${answer} is correct`)
-    //   : alert(`${answer} is incorrect`);
-    console.log(answer);
-    console.log(this.state.arr[this.randomQuestion()].ans);
-
-    // question.textContent = this.randomQuestion();
-    // console.log(this.randomQuestion());
+    answer === arr[arr.length - 1]
+      ? alert(`${answer} is correct`)
+      : alert(`${answer} is incorrect`);
   };
 
   render() {
     return (
       <div>
         <div className="main">
-          <span className="question">
-            {this.state.arr[this.randomQuestion()].qus}
-          </span>
+          <span className="question">{this.randomNumbers}</span>
           <input className="answer" type="number" />
           <button onClick={this.handleSubmit} className="btn">
             Check
