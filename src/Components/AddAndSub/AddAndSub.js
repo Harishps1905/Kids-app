@@ -18,21 +18,27 @@ class AddAndSub extends Component {
   }
 
   randomNumber = () => {
-    let fNum = Math.floor(Math.random() * 51);
-    let sNum = Math.floor(Math.random() * 51);
     let randomQuestion = Math.floor(Math.random() * 2);
-    console.log(fNum, sNum);
-    this.setState({ firstNum: fNum, secondNum: sNum });
-    randomQuestion ? this.addition() : this.subtraction();
+    this.setState(
+      {
+        firstNum: Math.floor(Math.random() * 51),
+        secondNum: Math.floor(Math.random() * 51),
+      },
+      () => {
+        randomQuestion ? this.addition() : this.subtraction();
+      }
+    );
   };
 
   addition = () => {
+    let sval = this.state.secondNum;
+    let fval = this.state.firstNum;
     this.setState({
       operator: "+",
-      answer: this.state.firstNum + this.state.secondNum,
+      answer: fval + sval,
     });
-    console.log("add", this.state.answer);
   };
+
   subtraction = () => {
     if (this.state.secondNum > this.state.firstNum) {
       let fval = this.state.secondNum;
@@ -40,13 +46,17 @@ class AddAndSub extends Component {
       this.setState({
         firstNum: fval,
         secondNum: sval,
+        operator: "-",
+        answer: fval - sval,
+      });
+    } else {
+      let fval = this.state.firstNum;
+      let sval = this.state.secondNum;
+      this.setState({
+        operator: "-",
+        answer: fval - sval,
       });
     }
-    this.setState({
-      operator: "-",
-      answer: this.state.firstNum - this.state.secondNum,
-    });
-    console.log("sub", this.state.answer);
   };
 
   handleUserInput = (e) => {
@@ -57,7 +67,6 @@ class AddAndSub extends Component {
     parseInt(this.state.userInput) === this.state.answer
       ? alert(`${this.state.userInput} is correct`)
       : alert(`${this.state.userInput} is not correct`);
-    console.log(this.state.userInput);
     this.randomNumber();
     e.preventDefault();
   };

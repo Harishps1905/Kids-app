@@ -4,6 +4,8 @@ import NumSeries from "./Components/NumSeries/NumSeries";
 import NumBetween from "./Components/NumBetween/NumBetween";
 import BeforeAndAfter from "./Components/BeforeAndAfter/BeforeAndAfter";
 import AddAndSub from "./Components/AddAndSub/AddAndSub";
+import AlphabetSeries from "./Components/AlphabetSeries/AlphabetSeries";
+import AlphabetBetween from "./Components/AlphabetBetween/AlphabetBetween";
 
 class App extends Component {
   render() {
@@ -12,8 +14,10 @@ class App extends Component {
         <div>main Page</div>
         {/* <NumSeries />
         <NumBetween />
-        <BeforeAndAfter /> */}
+        <BeforeAndAfter />
         <AddAndSub />
+        <AlphabetSeries /> */}
+        <AlphabetBetween />
       </div>
     );
   }
