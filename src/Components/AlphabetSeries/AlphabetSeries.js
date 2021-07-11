@@ -16,7 +16,7 @@ class AlphabetSeries extends Component {
 
   randomLetter = () => {
     let alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let randomNumber = Math.floor(Math.random() * (alphabets.length - 1));
+    let randomNumber = Math.floor(Math.random() * (alphabets.length - 2));
     console.log(alphabets.length);
     console.log(randomNumber);
     this.setState(
@@ -38,6 +38,7 @@ class AlphabetSeries extends Component {
     this.state.answer === this.state.userInput
       ? alert(`${this.state.userInput} is correct`)
       : alert(`${this.state.userInput} is incorrect`);
+
     this.randomLetter();
     e.preventDefault();
   };
@@ -46,7 +47,7 @@ class AlphabetSeries extends Component {
     return (
       <div>
         <div className="main">
-          <form onSubmit={this.handleSubmit}>
+          <form id="mainInput" onSubmit={this.handleSubmit}>
             <div>Alphabet Series</div>
             <span className="question">{this.state.question}</span>
             <input
